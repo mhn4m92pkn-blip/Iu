@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#fff0f5">
+<title>Căn bếp bí mật của Nhím và Thỏ 🐰🦔</title>
+<style>
+:root{--pink:#ff9fc8;--deep:#a34d7b;--cream:#fffaf2;--lav:#c9b9ff;--mint:#bdebdc;--ink:#67445b}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--ink);font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;background:linear-gradient(160deg,#fff2f6,#fff8e9 48%,#f1eaff);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.42;background-image:radial-gradient(#ffafd0 1.5px,transparent 2px),radial-gradient(#c9b9ff 1.5px,transparent 2px);background-size:44px 44px,63px 63px;background-position:0 0,20px 18px}
+button{font:inherit;cursor:pointer}
+.wrap{position:relative;z-index:1;max-width:760px;margin:auto;padding:22px 14px 44px}
+.top{text-align:center;padding:10px 6px 18px}
+.pill{display:inline-block;border-radius:999px;background:#ffffffb8;border:1px solid #f5c9dd;padding:7px 13px;font-size:.78rem;letter-spacing:.06em;color:#a65c83}
+h1{font-size:clamp(2rem,8vw,3.2rem);line-height:1.08;margin:16px 0 10px;color:#a34d7b;text-shadow:0 3px 0 #fff}
+.subtitle{line-height:1.65;margin:0 auto;max-width:550px;color:#85647b}
+.card{background:#ffffffed;border:1px solid #f4c9dd;border-radius:26px;padding:22px;box-shadow:0 12px 35px #9f5d7b14;margin:12px 0}
+.hidden{display:none!important}
+.primary,.secondary{border:0;border-radius:15px;padding:13px 18px;font-weight:800;transition:transform .15s}
+.primary{background:linear-gradient(135deg,#ff9fc8,#c6a9ff);color:#fff;box-shadow:0 5px 0 #d88bb4}
+.secondary{background:#fff0f7;color:#a34d7b;border:1px solid #f1bfd7}
+.primary:active,.secondary:active{transform:translateY(2px)}
+.full{width:100%;margin-top:10px}
+h2{margin:0 0 10px;color:#a34d7b;font-size:1.45rem}
+p{line-height:1.7}
+.stage{text-align:center;font-size:.82rem;color:#a06c8c;font-weight:800;letter-spacing:.04em}
+.scene{text-align:center;border-radius:20px;background:linear-gradient(180deg,#fff1f7,#fff8e9);padding:18px 10px;margin:12px 0}
+.cast{font-size:3.3rem;line-height:1.5;letter-spacing:3px}
+.scene-caption{font-size:.9rem;color:#946a83}
+.progressline{height:9px;background:#f7e1ed;border-radius:99px;overflow:hidden;margin:14px 0}
+.progressbar{height:100%;width:0;background:linear-gradient(90deg,#ff9fc8,#b8a1ff);transition:width .25s}
+.question-number{font-size:.82rem;color:#9b6a89;margin:4px 0 12px}
+.question{font-size:1.18rem;line-height:1.55;font-weight:800;margin:0 0 17px}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.choice{min-height:105px;border:2px solid #f3c6dc;border-radius:20px;padding:14px 12px;background:linear-gradient(160deg,#fff,#fff2f8);color:#70465f;font-weight:750;line-height:1.5;box-shadow:0 4px 0 #f4d8e7}
+.choice:nth-child(2){background:linear-gradient(160deg,#fff,#f2efff);border-color:#d9cdfa;box-shadow:0 4px 0 #e0d7f6}
+.choice .emoji{display:block;font-size:1.8rem;margin-bottom:6px}
+.choice.selected{outline:3px solid #b49bff;border-color:#9b83e9;background:#f4efff}
+.choice:disabled{opacity:.85;cursor:default}
+.feedback{margin:14px 0 0;background:#fff4dc;border:1px dashed #efc58e;border-radius:16px;padding:12px;line-height:1.6;text-align:center}
+.kitchen-counter{font-size:2.8rem;background:linear-gradient(140deg,#fff1f7,#f0eaff);border-radius:20px;padding:18px 10px;margin:14px 0}
+.ingredient-card{display:flex;align-items:center;gap:12px;text-align:left;width:100%;margin:10px 0;border:2px solid #f1c7dc;background:#fff9fc;border-radius:17px;padding:12px;color:#754d66}
+.ingredient-card .big{font-size:2.2rem}
+.ingredient-card strong{display:block}
+.ingredient-card small{color:#a17b92}
+.ingredient-card.done{background:#eafff4;border-color:#8bd9bb}
+.cakearea{font-size:4.3rem;background:linear-gradient(135deg,#fff1f8,#f0eaff);border-radius:20px;padding:22px;margin:14px 0}
+.final{background:linear-gradient(150deg,#fff3f8,#fff9e9);text-align:center}
+.final .bigheart{font-size:4rem;animation:beat 1.1s infinite}
+.reward-choice{display:block;width:100%;margin:9px 0;text-align:left;border:1px solid #f1c1d8;background:#fff;border-radius:14px;padding:13px;color:#754d66}
+.reward-choice.chosen{background:#fff0f7;border:2px solid #e88ab8}
+.footer{text-align:center;color:#ad7b9c;font-size:.8rem;margin-top:22px}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@media(max-width:440px){.card{padding:18px}.choices{grid-template-columns:1fr}.choice{min-height:75px;display:flex;align-items:center;text-align:left;gap:12px}.choice .emoji{margin:0;min-width:35px}.question{font-size:1.08rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="pill">♡ MỘT NHIỆM VỤ ĐẶC BIỆT DÀNH CHO NHÍM ♡</div>
+  <h1>Căn bếp bí mật<br>của Nhím và Thỏ 🐰🦔</h1>
+  <p class="subtitle">Hôm nay Thỏ muốn làm một chiếc bánh thật đặc biệt. Nhím hãy vào bếp giúp Thỏ tìm nguyên liệu nhé — mỗi món đều có một câu hỏi This or That đang chờ anh! 💗</p>
+</header>
+
+<section class="card" id="intro">
+  <div class="scene">
+    <div class="cast">🐰 👩🏻‍🍳　🦔</div>
+    <div class="scene-caption">Căn bếp nhỏ thơm mùi dâu tây và tình yêu</div>
+  </div>
+  <h2>“Nhím ơi, giúp Thỏ một chút nha!”</h2>
+  <p>Thỏ muốn làm bánh nhưng còn thiếu nguyên liệu. Nhím sẽ đi lấy từng món giúp Thỏ. Mỗi lần lấy một nguyên liệu, anh hãy chọn một trong hai điều mình thích nhất nhé!</p>
+  <p>Sau khi đủ nguyên liệu, Thỏ sẽ làm bánh và dành cho Nhím một bất ngờ. Sẵn sàng chưa? 🍓</p>
+  <button class="primary full" id="start">Đi vào căn bếp 🐾</button>
+</section>
+
+<section class="card hidden" id="fetch">
+  <div class="stage">NHIỆM VỤ 1 · NHÍM ĐI LẤY NGUYÊN LIỆU</div>
+  <div class="scene">
+    <div class="cast" id="fetchCast">🦔➡️🍓</div>
+    <div class="scene-caption" id="fetchCaption">Nhím ơi, giúp Thỏ lấy nguyên liệu đầu tiên nhé!</div>
+  </div>
+  <div class="progressline"><div class="progressbar" id="progress"></div></div>
+  <div class="question-number" id="qnum">NGUYÊN LIỆU 1 / 4</div>
+  <h2 id="ingTitle">🍓 Đi lấy dâu tây</h2>
+  <p class="question" id="qtext"></p>
+  <div class="choices" id="choices"></div>
+  <div class="feedback hidden" id="qfeedback"></div>
+  <button class="primary full hidden" id="next">Đi lấy nguyên liệu tiếp theo 🐾</button>
+</section>
+
+<section class="card hidden" id="baking">
+  <div class="stage">NHIỆM VỤ 2 · THỎ BẮT ĐẦU LÀM BÁNH</div>
+  <div class="scene">
+    <div class="cast">🦔🧺➡️🐰👩🏻‍🍳</div>
+    <div class="scene-caption">“Cảm ơn Nhím đã lấy đủ nguyên liệu cho Thỏ nha!”</div>
+  </div>
+  <h2>Chọn chiếc bánh Thỏ sẽ làm 💗</h2>
+  <p>Thỏ đã chuẩn bị xong tất cả rồi. Nhím muốn Thỏ làm chiếc bánh nào đây?</p>
+  <div class="choices">
+    <button class="choice" data-cake="heart"><span class="emoji">💗</span>Bánh trái tim</button>
+    <button class="choice" data-cake="strawberry"><span class="emoji">🍓</span>Bánh dâu tây</button>
+  </div>
+  <div class="feedback hidden" id="cakeFeedback"></div>
+  <button class="primary full hidden" id="bakeNow">Thỏ bắt đầu làm bánh 🍰</button>
+</section>
+
+<section class="card hidden" id="oven">
+  <div class="stage">NHIỆM VỤ 3 · THỎ LÀM BÁNH</div>
+  <div class="scene">
+    <div class="cast" id="ovenCast">🐰👩🏻‍🍳🥣</div>
+    <div class="scene-caption" id="ovenCaption">Thỏ đang chăm chú làm chiếc bánh dành cho Nhím…</div>
+  </div>
+  <div class="cakearea" id="cake">🎂</div>
+  <p id="bakeText" style="text-align:center">Trộn bột… thêm kem… trang trí bằng thật nhiều yêu thương 💕</p>
+  <button class="primary full" id="serve">Bánh xong rồi! Mang ra cho Nhím 💐</button>
+</section>
+
+<section class="card hidden final" id="reward">
+  <div class="stage">MÓN QUÀ BÍ MẬT · ĐẾN LƯỢT NHÍM</div>
+  <div class="scene">
+    <div class="cast">🐰🍰💕🦔</div>
+    <div class="scene-caption">Thỏ vui vẻ mang chiếc bánh đến cho Nhím</div>
+  </div>
+  <div class="bigheart">🎀</div>
+  <h2>Nhím ơiiii, anh có muốn thưởng gì cho em không nè? 🥺💕</h2>
+  <p>Em đã làm bánh cho anh rồi đó! Thỏ muốn được nhận một phần thưởng đáng yêu từ Nhím. Anh chọn nhé!</p>
+  <button class="reward-choice" data-reward="🤗 Một cái ôm thật chặt khi gặp nhau">🤗 Một cái ôm thật chặt khi gặp nhau</button>
+  <button class="reward-choice" data-reward="💐 Một buổi hẹn hò do anh lên kế hoạch">💐 Một buổi hẹn hò do anh lên kế hoạch</button>
+  <button class="reward-choice" data-reward="🎁 Một món quà nhỏ do anh tự chọn">🎁 Một món quà nhỏ do anh tự chọn</button>
+  <button class="reward-choice" data-reward="🍰 Dẫn em đi ăn món em thích">🍰 Dẫn em đi ăn món em thích</button>
+  <button class="reward-choice" data-reward="🥹 Tất cả những điều trên — Thỏ tham lam một chút">🥹 Tất cả những điều trên — Thỏ tham lam một chút</button>
+  <div class="feedback hidden" id="rewardFeedback"></div>
+  <button class="primary full hidden" id="last">Đọc lời nhắn cuối cùng 💌</button>
+</section>
+
+<section class="card hidden final" id="ending">
+  <div class="bigheart">🐰💕🦔</div>
+  <h2>Gửi Nhím yêu dấu của em</h2>
+  <p style="font-size:1.08rem">Cảm ơn anh đã vào bếp giúp Thỏ, chọn chiếc bánh và chơi đến cuối cùng. Em đã gửi một chút tình yêu của mình vào trò chơi nhỏ này.</p>
+  <p style="font-size:1.4rem;color:#b34e83;font-weight:800">Em yêu anh 💗</p>
+  <p>Thỏ nhỏ của anh 🐰🎀</p>
+  <button class="secondary full" id="restart">Chơi lại từ đầu ↻</button>
+</section>
+<div class="footer">Made with love by Thỏ 🐰 · Một góc nhỏ chỉ dành cho hai đứa 💗</div>
+</div>
+<script>
+const ingredients = [
+ {emoji:"🍓",name:"Dâu tây",q:["Chọn một món ngọt nhé!","🍓 Ăn dâu tây cùng em","🍰 Ăn bánh ngọt cùng em"],scene:"🦔➡️🍓",caption:"Nhím chạy đi tìm những quả dâu tây đỏ mọng cho Thỏ."},
+ {emoji:"🥚",name:"Trứng",q:["Nếu cùng nhau chuẩn bị bữa sáng…","🍳 Cùng em làm bữa sáng","🥐 Để em chuẩn bị bữa sáng cho anh"],scene:"🦔➡️🥚",caption:"Nhím cẩn thận lấy trứng, không để quả nào bị vỡ."},
+ {emoji:"🥛",name:"Sữa",q:["Một buổi hẹn hò với em, anh thích…","☕ Đi uống nước ở quán cà phê","🌌 Ngồi cạnh nhau ngắm bầu trời sao"],scene:"🦔➡️🥛",caption:"Nhím tìm thấy sữa trong tủ lạnh mát lạnh."},
+ {emoji:"🌾",name:"Bột mì",q:["Nếu có một ngày rảnh bên nhau…","✈️ Cùng em đi du lịch","🏡 Cùng em ở nhà xem phim"],scene:"🦔➡️🌾",caption:"Nhím mang nốt bột mì về bếp. Sắp đủ nguyên liệu rồi!"}
+];
+let current=0,selectedCake="",selectedReward="";
+const $=id=>document.getElementById(id);
+const sections=["intro","fetch","baking","oven","reward","ending"];
+function show(id){sections.forEach(s=>$(s).classList.toggle("hidden",s!==id));window.scrollTo({top:0,behavior:"smooth"});}
+function renderIngredient(){
+ const ing=ingredients[current];
+ $("fetchCast").textContent=ing.scene;$("fetchCaption").textContent=ing.caption;
+ $("progress").style.width=(current/ingredients.length*100)+"%";
+ $("qnum").textContent=`NGUYÊN LIỆU ${current+1} / ${ingredients.length}`;
+ $("ingTitle").textContent=ing.emoji+" Đi lấy "+ing.name.toLowerCase();
+ $("qtext").textContent=ing.q[0];
+ $("choices").innerHTML="";$("qfeedback").classList.add("hidden");$("next").classList.add("hidden");
+ ing.q.slice(1).forEach((answer,i)=>{
+   const b=document.createElement("button");b.className="choice";
+   const em=document.createElement("span");em.className="emoji";em.textContent=i===0?"💗":"✨";
+   const tx=document.createElement("span");tx.textContent=answer;
+   b.append(em,tx);
+   b.addEventListener("click",()=>{
+     [...$("choices").children].forEach(x=>{x.disabled=true;x.classList.remove("selected")});b.classList.add("selected");
+     $("qfeedback").textContent=`Nhím đã chọn xong và lấy được ${ing.name}! Thỏ vui lắm: “Cảm ơn anh nhaaa 💗”`;
+     $("qfeedback").classList.remove("hidden");
+     $("progress").style.width=((current+1)/ingredients.length*100)+"%";
+     $("next").textContent=current===ingredients.length-1?"Mang tất cả nguyên liệu về cho Thỏ 🧺":"Đi lấy nguyên liệu tiếp theo 🐾";
+     $("next").classList.remove("hidden");
+   });
+   $("choices").appendChild(b);
+ });
+}
+$("start").addEventListener("click",()=>{current=0;renderIngredient();show("fetch")});
+$("next").addEventListener("click",()=>{if(current<ingredients.length-1){current++;renderIngredient()}else{show("baking")}});
+document.querySelectorAll("[data-cake]").forEach(b=>b.addEventListener("click",()=>{
+ selectedCake=b.dataset.cake;document.querySelectorAll("[data-cake]").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");
+ $("cakeFeedback").textContent=selectedCake==="heart"?"“Bánh trái tim nhé! Thỏ sẽ làm bằng tất cả tình yêu dành cho Nhím 💗”":"“Bánh dâu tây nhé! Thỏ sẽ trang trí thật xinh cho anh 🍓”";
+ $("cakeFeedback").classList.remove("hidden");$("bakeNow").classList.remove("hidden");
+}));
+$("bakeNow").addEventListener("click",()=>{
+ $("cake").textContent=selectedCake==="heart"?"💗🎂💗":"🍓🎂🍓";
+ $("ovenCaption").textContent=selectedCake==="heart"?"Thỏ đang nặn kem thành hình trái tim thật xinh…":"Thỏ đang xếp những quả dâu tây đỏ mọng lên bánh…";
+ $("bakeText").textContent=selectedCake==="heart"?"Thỏ trộn bột, nướng bánh và vẽ một trái tim dành riêng cho anh.":"Thỏ trộn bột, nướng bánh rồi trang trí bằng dâu tây tươi.";
+ show("oven");
+});
+$("serve").addEventListener("click",()=>show("reward"));
+document.querySelectorAll("[data-reward]").forEach(b=>b.addEventListener("click",()=>{
+ document.querySelectorAll("[data-reward]").forEach(x=>x.classList.remove("chosen"));b.classList.add("chosen");selectedReward=b.dataset.reward;
+ $("rewardFeedback").textContent="Thỏ nhận được lời hứa đáng yêu: "+selectedReward+" 💗 Nhớ cùng nhau thực hiện khi có dịp nhé!";
+ $("rewardFeedback").classList.remove("hidden");$("last").classList.remove("hidden");
+}));
+$("last").addEventListener("click",()=>show("ending"));
+$("restart").addEventListener("click",()=>{
+ current=0;selectedCake="";selectedReward="";
+ document.querySelectorAll("[data-cake]").forEach(x=>x.classList.remove("selected"));
+ document.querySelectorAll("[data-reward]").forEach(x=>x.classList.remove("chosen"));
+ $("cakeFeedback").classList.add("hidden");$("bakeNow").classList.add("hidden");$("rewardFeedback").classList.add("hidden");$("last").classList.add("hidden");
+ renderIngredient();show("intro");
+});
+</script>
+</body>
+</html>
